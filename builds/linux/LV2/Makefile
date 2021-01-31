@@ -11,13 +11,13 @@ ttl_generator:
 	$(MAKE) -f Makefile.ttl_generator CONFIG=$(CONFIG)
 
 lv2: ttl_generator binary
-	./lv2_ttl_generator build/helm.so
-	mkdir -p helm.lv2
-	cp build/helm.so helm.lv2
-	mv *.ttl helm.lv2
+	./lv2_ttl_generator build/helm-synth.so
+	mkdir -p helm-synth.lv2
+	cp build/helm-synth.so helm-synth.lv2
+	mv *.ttl helm-synth.lv2
 
 clean:
 	$(MAKE) clean CONFIG=$(CONFIG) -f Makefile.binary
 	$(MAKE) clean CONFIG=$(CONFIG) -f Makefile.ttl_generator
 	rm -rf build
-	rm -rf helm.lv2
+	rm -rf helm-synth.lv2

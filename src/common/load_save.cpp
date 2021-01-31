@@ -20,9 +20,9 @@
 #include "midi_manager.h"
 #include "synth_base.h"
 
-#define LINUX_FACTORY_PATCH_DIRECTORY "/usr/share/helm/patches"
+#define LINUX_FACTORY_PATCH_DIRECTORY "/usr/share/helm-synth/patches"
 #define USER_BANK_NAME "User Patches"
-#define LINUX_BANK_DIRECTORY "~/.helm/patches"
+#define LINUX_BANK_DIRECTORY "~/.helm-synth/patches"
 #define EXPORTED_BANK_EXTENSION "helmbank"
 #define DID_PAY_FILE "thank_you.txt"
 #define PAY_WAIT_DAYS 4

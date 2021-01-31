@@ -76,7 +76,7 @@ MidiKeyboardComponent::MidiKeyboardComponent (MidiKeyboardState& s, Orientation 
       useMousePositionForVelocity (true),
       shouldCheckMousePos (false),
       keyMappingOctave (6),
-      octaveNumForMiddleC (3)
+      octaveNumForMiddleC (4)
 {
     addChildComponent (scrollDown = new MidiKeyboardUpDownButton (*this, -1));
     addChildComponent (scrollUp   = new MidiKeyboardUpDownButton (*this, 1));

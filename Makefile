@@ -30,7 +30,7 @@ endif
 endif
 
 
-PROGRAM = helm
+PROGRAM = helm-synth
 BIN     = $(DESTDIR)/usr/bin
 BINFILE = $(BIN)/$(PROGRAM)
 LV2     = $(DESTDIR)/$(LIBDIR)/lv2/$(PROGRAM).lv2
@@ -98,22 +98,22 @@ install_patches:
 install_standalone: standalone install_patches install_icons
 	install -d $(BIN) $(IMAGES) $(MAN) $(CHANGES) $(DESKTOP)
 	install standalone/builds/linux/build/$(PROGRAM) $(BIN)
-	install -m644 standalone/helm.desktop $(DESKTOP)/helm.desktop
+	install -m644 standalone/helm.desktop $(DESKTOP)/helm-synth.desktop
 	install -m644 images/* $(IMAGES)
 	cp changelog changes
 	gzip -n -9 changelog
 	mv changes changelog
 	mv changelog.gz $(CHANGES)/changelog.gz
-	cp docs/helm.1.gz $(MAN)
+	mv docs/helm.1.gz $(MAN)/helm-synth.1.gz
 
 install_lv2: lv2 install_patches
 	install -d $(PATCHES) $(LV2)
-	install -m644 builds/linux/LV2/helm.lv2/* $(LV2)
+	install -m644 builds/linux/LV2/helm-synth.lv2/* $(LV2)
 	cp -rf patches/* $(PATCHES)
 
 install_vst: vst install_patches
 	install -d $(PATCHES) $(VSTDIR)
-	install builds/linux/VST/build/helm.so $(VST)
+	install builds/linux/VST/build/helm-synth.so $(VST)
 	cp -rf patches/* $(PATCHES)
 
 thank_you:
