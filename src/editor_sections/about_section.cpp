@@ -63,6 +63,13 @@ AboutSection::AboutSection(String name) : Overlay(name) {
   animate_->addListener(this);
   addAndMakeVisible(animate_);
 
+  middle_c_ = new ToggleButton();
+  middle_c_->setToggleState(LoadSave::shouldMiddleC(),
+                           NotificationType::dontSendNotification);
+  middle_c_->setLookAndFeel(TextLookAndFeel::instance());
+  middle_c_->addListener(this);
+  addAndMakeVisible(middle_c_);
+
   size_button_small_ = new TextButton(String(100 * MULT_SMALL) + "%");
   addAndMakeVisible(size_button_small_);
   size_button_small_->addListener(this);
@@ -147,7 +154,10 @@ void AboutSection::paint(Graphics& g) {
              0.0f, 180.0f,
              155.0f,
              20.0f, Justification::topRight);
-
+  g.drawText(TRANS("Middle C"),
+             0.0f, 220.0f,
+             273.0f - PADDING_X - 0.5 * BUTTON_WIDTH,
+             20.0f, Justification::topRight);
   g.restoreState();
 }
 
@@ -181,11 +191,16 @@ void AboutSection::resized() {
   size_button_small_->setBounds(size_button_normal_->getX() - size_padding - size_width, size_y,
                                 size_width, size_height);
 
+  size_y = size_button_extra_large_->getBottom() + PADDING_Y;
+  middle_c_->setBounds(info_rect.getX() + 273.f, size_y,
+                       BUTTON_WIDTH, BUTTON_WIDTH);
+
   if (device_selector_) {
-    int y = size_button_extra_large_->getBottom() + PADDING_Y;
+    int y = middle_c_->getBottom() + PADDING_Y;
     device_selector_->setBounds(info_rect.getX(), y,
                                 info_rect.getWidth(), info_rect.getBottom() - y);
   }
+
 }
 
 void AboutSection::mouseUp(const MouseEvent &e) {
@@ -225,6 +240,9 @@ void AboutSection::buttonClicked(Button* clicked_button) {
       parent = s;
 
     parent->animate(animate_->getToggleState());
+  }
+  else if (clicked_button == middle_c_) {
+    LoadSave::saveMiddleC(middle_c_->getToggleState());
   }
   else if (clicked_button == size_button_small_)
     setGuiSize(MULT_SMALL);

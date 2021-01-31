@@ -440,6 +440,16 @@ void LoadSave::saveAnimateWidgets(bool animate_widgets) {
   saveVarToConfig(config_object);
 }
 
+void LoadSave::saveMiddleC(bool middle_c) {
+  var config_var = getConfigVar();
+  if (!config_var.isObject())
+    config_var = new DynamicObject();
+
+  DynamicObject* config_object = config_var.getDynamicObject();
+  config_object->setProperty("middle_c", middle_c);
+  saveVarToConfig(config_object);
+}
+
 void LoadSave::saveWindowSize(float window_size) {
   var config_var = getConfigVar();
   if (!config_var.isObject())
@@ -608,6 +618,18 @@ bool LoadSave::shouldAnimateWidgets() {
     return true;
 
   return config_object->getProperty("animate_widgets");
+}
+
+bool LoadSave::shouldMiddleC() {
+  var config_state = getConfigVar();
+  DynamicObject* config_object = config_state.getDynamicObject();
+  if (!config_state.isObject())
+    return true;
+
+  if (!config_object->hasProperty("middle_c"))
+    return true;
+
+  return config_object->getProperty("middle_c");
 }
 
 float LoadSave::loadWindowSize() {

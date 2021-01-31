@@ -42,6 +42,7 @@ class AboutSection : public Overlay, public ButtonListener {
     ScopedPointer<AudioDeviceSelectorComponent> device_selector_;
     ScopedPointer<Button> check_for_updates_;
     ScopedPointer<Button> animate_;
+    ScopedPointer<Button> middle_c_;
 
     ScopedPointer<Button> size_button_small_;
     ScopedPointer<Button> size_button_normal_;

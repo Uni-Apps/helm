@@ -73,6 +73,7 @@ class LoadSave {
     static bool wasUpgraded();
     static bool shouldCheckForUpdates();
     static bool shouldAnimateWidgets();
+    static bool shouldMiddleC();
     static float loadWindowSize();
     static String loadVersion();
     static bool shouldAskForPayment();
@@ -84,6 +85,7 @@ class LoadSave {
     static void savePaid();
     static void saveUpdateCheckConfig(bool check_for_updates);
     static void saveAnimateWidgets(bool check_for_updates);
+    static void saveMiddleC(bool check_for_updates);
     static void saveWindowSize(float window_size);
     static void saveMidiMapConfig(MidiManager* midi_manager);
     static void loadConfig(MidiManager* midi_manager, mopo::StringLayout* layout = nullptr);
